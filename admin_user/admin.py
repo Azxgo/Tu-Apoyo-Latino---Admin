@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Usuario, Eventos, Cursos
+from .models import Usuario,Eventos,Cursos
+
 
 class UsuarioDet(admin.ModelAdmin):
     fields = ["nombre","correo","password","creado"]

@@ -17,10 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
+from admin_user import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('inicio/', login_required(views.inicio), name='inicio'),
 ]
+
 
 if settings.DEBUG:
     from django.conf.urls.static import static
