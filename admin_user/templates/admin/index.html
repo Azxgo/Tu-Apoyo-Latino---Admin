@@ -13,8 +13,28 @@
 
 {% block content %}
 <div id="content-main">
-  {% include "admin/app_list.html" with app_list=app_list show_changelinks=True %}
+  <div class="card_inicio">
+  <div class="card">
+    <div class="card-header">
+      Vista General
+    </div>
+    <div class="card-body">
+
+    </div>
+  </div>
+</div>
+  <div class="card">
+    <div class="card-header">
+      Ultimas Actividades
+    </div>
+    <div class="card-body">
+
+    </div>
+  </div>
 </div>
 {% endblock %}
 
-{% block content_title %}{% if title %}<h1>Panel de Control</h1>{% endif %}{% endblock %}
+{% block content_title %}{% if title %}
+<img src="{% static 'core/icons/setting.png' %}" alt="Descripción de la imagen">
+<h1>Panel de Control</h1>
+{% endif %}{% endblock %}

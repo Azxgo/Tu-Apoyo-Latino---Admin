@@ -6,7 +6,8 @@
 <title>{% block title %}{% endblock %}</title>
 
 <!-- Estilos -->
-<link rel="stylesheet" href="{% block stylesheet %}{% static 'core/css/styles.css' %}{% endblock %}">
+<link rel="stylesheet" href="{% block stylesheet %}{% static 'core/css/base.css' %}{% endblock %}">
+<link rel="stylesheet" href="{% block stylesheet2 %}{% static 'core/css/styles.css' %}{% endblock %}">
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="..." crossorigin="anonymous">
 
@@ -36,7 +37,7 @@
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3" href="./base.html">Tu Apoyo Latino</a>
         <!-- Sidebar Toggle-->
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+        <button class="btn btn-dark btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         
         <!-- Navbar Search-->
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
@@ -52,7 +53,6 @@
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><form id="logout-form" method="post" action="{% url 'admin:logout' %}">
                           {% csrf_token %}
-                          <div class="boton_logout"></div>
                           <button class="btn btn-light btn-lg" type="submit">{% translate 'Log out' %}</button>
                         </form>
                 </ul>
@@ -65,7 +65,7 @@
               <div class="sb-sidenav-menu">
                   <div class="nav">
                       <div class="sb-sidenav-menu-heading">Menu</div>
-                      <a class="nav-link" href="./base.html">
+                      <a class="nav-link" href="/admin/">
                           <div class="sb-nav-link-icon"></div>
                           <i class="fa-solid fa-gear"></i> <span style="margin-right: 8px;"></span>Panel de control
                       </a>
@@ -76,8 +76,8 @@
                       </a>
                       <div class="collapse" id="collapseUsuarios" aria-labelledby="headingUsuarios" data-bs-parent="#sidenavAccordion">
                           <nav class="sb-sidenav-menu-nested nav">
-                              <a class="nav-link" href="layout-static.html"><i class="fa-solid fa-plus"></i><span style="margin-right: 8px;"></span> Agregar</a>
-                              <a class="nav-link" href="layout-sidenav-light.html"><i class="fa-solid fa-marker"></i><span style="margin-right: 8px;"></span> Editar</a>
+                              <a class="nav-link" href="/admin/admin_user/usuario/add/"><i class="fa-solid fa-plus"></i><span style="margin-right: 8px;"></span> Agregar</a>
+                              <a class="nav-link" href="/admin/admin_user/usuario/"><i class="fa-solid fa-marker"></i><span style="margin-right: 8px;"></span> Editar</a>
                           </nav>
                       </div>
                       
@@ -88,8 +88,8 @@
                       </a>
                       <div class="collapse" id="collapseEventos" aria-labelledby="headingEventos" data-bs-parent="#sidenavAccordion">
                           <nav class="sb-sidenav-menu-nested nav">
-                              <a class="nav-link" href="layout-static.html"><i class="fa-solid fa-plus"></i><span style="margin-right: 8px;"></span> Agregar</a>
-                              <a class="nav-link" href="layout-sidenav-light.html"><i class="fa-solid fa-marker"></i><span style="margin-right: 8px;"></span> Editar</a>
+                              <a class="nav-link" href="/admin/admin_user/eventos/add/"><i class="fa-solid fa-plus"></i><span style="margin-right: 8px;"></span> Agregar</a>
+                              <a class="nav-link" href="/admin/admin_user/eventos/"><i class="fa-solid fa-marker"></i><span style="margin-right: 8px;"></span> Editar</a>
                           </nav>
                       </div>
                       <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCursos" aria-expanded="false" aria-controls="collapseCursos">
@@ -99,8 +99,8 @@
                       </a>
                       <div class="collapse" id="collapseCursos" aria-labelledby="headingCursos" data-bs-parent="#sidenavAccordion">
                           <nav class="sb-sidenav-menu-nested nav">
-                              <a class="nav-link" href="layout-static.html"><i class="fa-solid fa-plus"></i><span style="margin-right: 8px;"></span> Agregar</a>
-                              <a class="nav-link" href="layout-sidenav-light.html"><i class="fa-solid fa-marker"></i><span style="margin-right: 8px;"></span> Editar</a>
+                              <a class="nav-link" href="/admin/admin_user/cursos/add/"><i class="fa-solid fa-plus"></i><span style="margin-right: 8px;"></span> Agregar</a>
+                              <a class="nav-link" href="/admin/admin_user/cursos/"><i class="fa-solid fa-marker"></i><span style="margin-right: 8px;"></span> Editar</a>
                           </nav>
                       </div>
                       <a class="nav-link" href="./base.html">
@@ -122,6 +122,7 @@
               </div>
           </nav>
       </div>
+      <div class="headerbackground">
       <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
@@ -129,49 +130,24 @@
 <div id="container">
 
   <!-- Header -->
-  {% block header %}
-  <div id="header"> 
-      <div id="branding">
-      </div>
-      {% block usertools %}
-
-      {% if has_permission %}
-      <div id="user-tools">
-      </div>
-      {% endif %}
-      {% endblock %}
-      {% block nav-global %}{% endblock %}
-  </div>
-  {% endblock %}
-
-  <!-- Breadcrumbs ¿? -->
-  {% block nav-breadcrumbs %}
-    <nav aria-label="{% translate 'Breadcrumbs' %}">
-      {% block breadcrumbs %}
-        <div class="breadcrumbs">
-          <a href="{% url 'admin:index' %}">{% translate 'Home' %}</a>
-          {% if title %} &rsaquo; {{ title }}{% endif %}
-        </div>
-      {% endblock %}
-    </nav>
-  {% endblock %}
-  
 
   <div class="main" id="main">
     <!-- Navbar -->
-      {% block nav-sidebar %}
-        {% include "admin/nav_sidebar.html" %}
-      {% endblock %}
-
       <!-- Content Start -->
     <div id="content-start" class="content" tabindex="-1">
 
       <!-- Titulos -->
       <div id="content" class="{% block coltype %}colM{% endblock %}">
         {% block pretitle %}{% endblock %}
-        {% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
+        <div class="image-with-heading">
+        {% block content_title %}{% if title %}
+          <h1>{{title}}</h1>
+        {% endif %}{% endblock %}
+      </div>
         {% block content_subtitle %}{% if subtitle %}<h2>{{ subtitle }}</h2>{% endif %}{% endblock %}
+    </div>
       <!-- Content -->
+      
         {% block content %}
           {% block object-tools %}{% endblock %}
           {{ content }}

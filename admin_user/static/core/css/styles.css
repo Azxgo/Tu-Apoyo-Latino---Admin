@@ -6801,10 +6801,9 @@ textarea.form-control-lg {
 }
 
 .fixed-top, .sb-nav-fixed #layoutSidenav #layoutSidenav_nav, .sb-nav-fixed .sb-topnav {
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 1030;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
 }
 
 .fixed-bottom {
@@ -10929,8 +10928,9 @@ body {
   overflow-y: auto;
 }
 .sb-nav-fixed #layoutSidenav #layoutSidenav_content {
-  padding-left: 225px;
-  top: 56px;
+  padding-left: 250px;
+  padding-top: 100px;
+  padding-right: 20px;
 }
 
 #layoutError {
@@ -11244,3 +11244,18 @@ body {
 .boton_logout{
   align-items: center;
 }
+
+.image-with-heading {
+  display: flex;
+  align-items: center;
+}
+
+.image-with-heading img {
+  margin-right: 10px; /* Ajusta el margen según tus necesidades */
+  width: 40px;
+  height: 40px;
+}
+
+
+ 
+
