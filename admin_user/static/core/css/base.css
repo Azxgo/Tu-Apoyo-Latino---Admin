@@ -208,7 +208,18 @@ dd {
 
 form {
     margin: 0;
-    padding: 0;
+    padding:0;
+}
+
+.form-agregar{
+    padding-top:30px;
+    padding-left:25px;
+    width: 100%;
+    background: #ebebeb;
+    border-radius: 1%;
+    position: absolute;
+    top:190px;
+
 }
 
 fieldset {
@@ -384,6 +395,7 @@ table thead th .text a {
     display: block;
     cursor: pointer;
     padding: 8px 10px;
+    font-size: 13px;
 }
 
 table thead th .text a:focus, table thead th .text a:hover {
@@ -559,7 +571,6 @@ input[type=button][disabled].default {
 
 .module {
     border: none;
-    margin-bottom: 30px;
     background: var(--body-bg);
 }
 

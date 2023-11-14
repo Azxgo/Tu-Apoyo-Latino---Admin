@@ -12,8 +12,10 @@ class EventoDet(admin.ModelAdmin):
     search_fields = ("nombre", )
     fields = ["nombre","descripcion","fechayhora","direccion","imagen"]
 
+
 class CursoDet(admin.ModelAdmin):
     list_display = ("nombre",)
+    search_fields = ("nombre", )
     fields = ["nombre","descripcion", "precio","archivo"]
 
 admin.site.register(Usuario,UsuarioDet)

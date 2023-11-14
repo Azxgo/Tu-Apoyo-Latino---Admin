@@ -87,3 +87,19 @@
   </div>
 </div>
 {% endblock %}
+
+{% block content_title %}{% if title %} 
+{% if title == 'Seleccione Usuario a modificar' %}
+<img src="{% static 'core/icons/user.png' %}" alt="Descripción de la imagen">
+<h1>{{title}}</h1>
+{% elif title == 'Seleccione Evento a modificar' %}
+<img src="{% static 'core/icons/event.png' %}" alt="Descripción de la imagen">
+<h1>{{title}}</h1>
+{% elif title == 'Seleccione Curso a modificar' %}
+<img src="{% static 'core/icons/class.png' %}" alt="Descripción de la imagen">
+<h1>{{title}}</h1>
+{% else %}
+<img src="{% static 'core/icons/setting.png' %}" alt="Descripción de la imagen">
+<h1>{{title}}</h1>
+{% endif %}
+{% endif %}{% endblock %}

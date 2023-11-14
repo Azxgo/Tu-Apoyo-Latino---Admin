@@ -15,7 +15,6 @@ class Usuario(AbstractBaseUser):
     class Meta:
             verbose_name="Usuario"
             verbose_name_plural="Usuarios"
-            ordering=["nombre","correo","password","creado"]
 
     def __str__(self):
         return self.nombre
@@ -25,11 +24,11 @@ class Actividad():
 
 class Eventos(models.Model):
     id = models.AutoField(primary_key=True)
-    nombre = models.CharField(unique=True,max_length=100,verbose_name='nombre')
+    nombre = models.CharField(unique=True,max_length=100,verbose_name='Nombre')
     descripcion = models.TextField(blank=True)
-    fechayhora = models.DateTimeField(null=False)
+    fechayhora = models.DateTimeField(null=False,verbose_name='Fecha y Hora')
     direccion = models.CharField(max_length=200)
-    imagen = models.ImageField(upload_to="projects",verbose_name="imagen")
+    imagen = models.ImageField(upload_to="projects",verbose_name="Imagen")
     asistentes = models.ManyToManyField("Usuario")
 
     class Meta:
