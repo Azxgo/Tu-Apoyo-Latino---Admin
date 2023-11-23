@@ -378,6 +378,7 @@ body.popup .submit-row {
 .inline-group {
     padding: 0;
     margin: 0 0 30px;
+    padding-right:28px;
 }
 
 .inline-group thead th {

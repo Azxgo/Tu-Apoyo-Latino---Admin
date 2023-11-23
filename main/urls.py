@@ -23,8 +23,11 @@ from admin_user import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('inicio/', login_required(views.inicio), name='inicio'),
+    path('inbox/', views.inbox, name='inbox'),
     path('activity/', views.activity, name='activity'),
     path('calendar/', views.calendar, name = 'calendar'),
+    path('form/',views.enviar_mensaje, name="form"),
+    path('responder',views.responder_mensaje,name='responder_mensaje')
 ]
 
 

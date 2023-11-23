@@ -594,18 +594,19 @@ input[type=button][disabled].default {
 .module h2, .module caption, .inline-group h2 {
     margin: 0;
     padding: 8px;
-    font-weight: 400;
+    font-weight: bold;
     font-size: 0.8125rem;
     text-align: left;
-    background: var(--primary);
-    color: var(--header-link-color);
+    background: #ebebeb;
+    color: #333333;
 }
 
 .module caption,
 .inline-group h2 {
-    font-size: 0.75rem;
+    font-size: 14px;
     letter-spacing: 0.5px;
     text-transform: uppercase;
+    padding-bottom: 20px;
 }
 
 .module table {
@@ -1173,3 +1174,15 @@ a.deletelink:focus, a.deletelink:hover {
     padding-top:100px;
   }
 
+  .all-row{
+    padding-top:80px;
+  }
+
+  .none{
+    display:none;
+  }
+
+  .botones{
+    padding:10px;
+  }
+  
