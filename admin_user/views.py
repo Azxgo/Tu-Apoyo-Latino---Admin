@@ -1,21 +1,23 @@
-from django.shortcuts import render , redirect
+from django.shortcuts import render , redirect , get_object_or_404
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.contrib import messages
 from django.conf import settings
 from .forms import Messages
-from .models import Mensaje
-
+from .models import Mensaje, Calendario
+from django.http import JsonResponse
 
 # Create your views here.
 def inicio(request):
     return render(request, 'admin/inicio.html')
 
+# Vista que muestra los mensajes del inbox
 def inbox(request):
-    messages = Mensaje.objects.raw('select a.id , a.username,a.email,b.asunto,b.mensaje,b.creado from auth_user a,admin_user_mensaje b where a.id = remitente_id')
+    messages = Mensaje.objects.raw('select b.id , a.username,a.email,b.asunto,b.mensaje,b.creado from auth_user a,admin_user_mensaje b where a.id = remitente_id')
     print(messages)
     return render(request,'admin/inbox.html',{'messages': messages})
 
+# Vista que envia el mensaje del formulario 
 def enviar_mensaje(request):
     if request.method == 'POST':
         form = Messages(request.POST)
@@ -28,6 +30,15 @@ def enviar_mensaje(request):
 
     return render(request, 'admin/formprueba.html', {'form': form})
 
+def eliminar_mensaje(request):
+    if request.method == 'POST':
+        id = request.POST['message_id']
+        msg = get_object_or_404(Mensaje, pk=id)
+        msg.delete()
+        return redirect('inbox')
+
+
+# Vista para responder y enviar el mensaje
 def responder_mensaje(request):
     if request.method == "POST":
         nombre = request.POST['nombre']
@@ -57,4 +68,19 @@ def activity(request):
     return render(request, 'admin/activity.html')
 
 def calendar(request):
-    return render(request, 'admin/calendario.html')
+    all_calendar = Calendario.objects.all()
+    context = {
+        "calendar" : all_calendar
+    }
+    return render(request, 'admin/calendario.html', context)
+
+def all_calendar(request):
+    all_calendar = Calendario.objects.all()
+    out = []
+    for event in all_calendar:
+        out.append({
+            'title' : event.nombre,
+            'id' : event.id,
+            'start' : event.fechayhora.strftime("%m/%d/%Y %H:%M:%S"),
+        })
+    return JsonResponse(out, safe = False)

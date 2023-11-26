@@ -16,9 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from admin_user import views
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,10 +27,11 @@ urlpatterns = [
     path('inbox/', views.inbox, name='inbox'),
     path('activity/', views.activity, name='activity'),
     path('calendar/', views.calendar, name = 'calendar'),
+    path('all_calendar/', views.all_calendar, name = 'all_calendar'),
     path('form/',views.enviar_mensaje, name="form"),
-    path('responder',views.responder_mensaje,name='responder_mensaje')
+    path('responder',views.responder_mensaje,name='responder_mensaje'),
+    path('eliminar/',views.eliminar_mensaje,name='eliminar_mensaje')
 ]
-
 
 if settings.DEBUG:
     from django.conf.urls.static import static

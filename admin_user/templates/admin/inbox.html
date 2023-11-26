@@ -41,6 +41,7 @@
                       <td class="none">{{ msg.mensaje }}</td>
                       <!--Editar campo de email-->
                       <td class="none">{{ msg.email }}</td>
+                      <td class="none">{{ msg.id }}</td>
                   </tr>
                 </tbody>
                 {% endfor %}
@@ -67,9 +68,12 @@
                 </div>
                 <div class="botones">
                   <div class="d-flex justify-content-between align-items-center">
-                  
                     <button id="btnResponder" class="btn btn-primary mt-2">Responder</button>
-                    <button id="btnEliminar" class="btn btn-danger mt-2">Eliminar</button>
+                    <form action="{% url 'eliminar_mensaje' %}" method="POST">
+                      {% csrf_token %}
+                      <input class="none" type="int" id="message_id" name="message_id">
+                      <button id="btnEliminar" class="btn btn-danger mt-2">Eliminar</button>
+                      </form>
                   </div>
                 </div>
 
@@ -154,10 +158,13 @@ var subject = $(this).find('td:eq(1)').text();
 var date = $(this).find('td:eq(2)').text();
 var content = $(this).find('td:eq(3)').text();
 var email = $(this).find('td:eq(4)').text();
+var msg_id = $(this).find('td:eq(5)').text();
 var correo = document.getElementById("correo");
 correo.value =  email;
 var asunto = document.getElementById("asunto");
 asunto.value = subject;
+var mensaje_id = document.getElementById("message_id");
+mensaje_id.value = msg_id;
 $('#detailFrom').text(from);
 $('#detailMail').text(email)
 $('#detailSubject').text(subject);

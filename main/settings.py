@@ -141,3 +141,5 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER= 'azugmoreira@gmail.com'
 EMAIL_HOST_PASSWORD = 'cnpc dlei tofb lfnz'
 EMAIL_USE_TLS = True
+
+AUTH_USER_MODEL = "admin_user.UserProfile"
