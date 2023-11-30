@@ -13,16 +13,16 @@
     <div class="all-row">
       <div class="row">
         <div class="col-md-6">
-          <div class="card">
+          <div class="card px-2 py-2">
             <div class="row justify-content-start">
               <div class="col-1">
                 <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
               </div>
               <div class="col-11">
-                  <input type="text" class="form-control" placeholder="Buscar Correo" aria-label="Buscar Correo" aria-describedby="button-addon2">   
+                  <input type="text" class="form-control" placeholder="Buscar " aria-label="Buscar " aria-describedby="button-addon2">   
               </div>
             </div>
-            <table id="datatablesSimple1" class="table table-hover">
+            <table id="datatablesSimple1" class="table table-hover no-select">
                 <!-- Tabla -->
                 <thead>
                   <tr>
@@ -35,12 +35,12 @@
                 <tbody>
                   <tr>
                     <!--Editar campo de username-->
-                      <td>{{ msg.username }}</td>
+                      <td>{{ msg.nombre }}</td>
                       <td>{{ msg.asunto }}</td>
                       <td>{{ msg.creado }}</td>
                       <td class="none">{{ msg.mensaje }}</td>
                       <!--Editar campo de email-->
-                      <td class="none">{{ msg.email }}</td>
+                      <td class="none">{{ msg.correo }}</td>
                       <td class="none">{{ msg.id }}</td>
                   </tr>
                 </tbody>
@@ -51,7 +51,7 @@
         <!--Pantalla Derecha-->
         <div class="col-md-6">
             <div class="right-center-container">
-                <p id="selectElementMessage">Seleccione un mensaje para responder.</p>
+                <img id="img" src="https://cdn.discordapp.com/attachments/1148446123875389500/1179594799058268170/1fdf6448-c944-441c-b57b-3598b242cca4.png?ex=657a5a43&is=6567e543&hm=759ef9b5714dc064119bb54d85443cd978f1d0bbd078485f2bd19807e856899a&" width="420em" alt="" style="margin-left: 100px;">
             </div>
             <div class="card d-none" id="formContent"> <!-- Ocultar todo el contenedor -->
                 <div class="card-header">
@@ -82,11 +82,11 @@
                 <form method="POST" action="{% url 'responder_mensaje' %}">
                   {% csrf_token %}
 
-                  <input type="text" id="nombre" name="nombre">
+                  <input class="none" type="text" id="nombre" name="nombre">
                   <input class="none" type="text" id="asunto" name="asunto">
                   <input class="none" type="text" id="correo" name="correo">
 
-                  <textarea id="mensaje" name="mensaje" class="form-control" rows="4" placeholder="Escribe tu respuesta aquí"></textarea>
+                  <textarea id="mensaje" name="mensaje" class="form-control" rows="4" placeholder="Escribe tu respuesta aquí"></textarea><br>
                   <button id="sendReply" class="btn btn-primary">Enviar</button>
                 </form>
                 
@@ -123,6 +123,7 @@ replyAreaVisible = false;
 
 // Restaurar el área de selección y ocultar el contenido del formulario
 $('#selectElementMessage').removeClass('d-none');
+$('#img').removeClass('d-none');
 $('#formContent').addClass('d-none');
 
 // Restaurar estilos de filas
@@ -149,6 +150,7 @@ replyAreaVisible = false;
 // Mostrar contenedor del formulario
 $('#formContent').removeClass('d-none'); 
 $('#selectElementMessage').addClass('d-none');
+$('#img').addClass('d-none');
 $('#initialMessage').hide();
 $('#messageContent').find('p:not(#initialMessage)').show();
 $('#datatablesSimple1 tbody tr').removeClass('selected');
@@ -213,12 +215,23 @@ nombre.value = "jose";
 
 
 </script>
+
+<style>
+
+  .no-select {
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
+
+</style>
+
 </div>
 {% endblock %}
 
 
 
 {% block content_title %}
-<img src="{% static 'core/icons/mail.png' %}" alt="Descripción de la imagen">
-<h1>Bandeja de Entrada</h1>
+<h1><i class="fa-regular fa-envelope"></i> Bandeja de Entrada</h1>
 {% endblock %}

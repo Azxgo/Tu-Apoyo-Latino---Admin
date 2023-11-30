@@ -90,25 +90,18 @@ Actividad.objects.create(sender=request.user,verb="likes this post",target=post)
 
 {% block content_title %}{% if title %} 
 {% if title == 'Añadir Usuario' %}
-<img src="{% static 'core/icons/user.png' %}" alt="Descripción de la imagen">
-<h1>{{title}}</h1>
+<h1><i class="fa-solid fa-user-plus"></i> {{title}}</h1>
 {% elif title == 'Añadir Evento' %}
-<img src="{% static 'core/icons/event.png' %}" alt="Descripción de la imagen">
-<h1>{{title}}</h1>
+<h1><i class="fa-regular fa-calendar-xmark"></i> {{title}}</h1>
 {% elif title == 'Añadir Curso' %}
-<img src="{% static 'core/icons/class.png' %}" alt="Descripción de la imagen">
-<h1>{{title}}</h1>
+<h1><i class="fa-solid fa-graduation-cap"></i> {{title}}</h1>
 {% elif title == 'Modificar Usuario' %}
-<img src="{% static 'core/icons/user.png' %}" alt="Descripción de la imagen">
-<h1>{{title}}</h1>
+<h1><i class="fa-solid fa-user-pen"></i> {{title}}</h1>
 {% elif title == 'Modificar Evento' %}
-<img src="{% static 'core/icons/event.png' %}" alt="Descripción de la imagen">
-<h1>{{title}}</h1>
+<h1><i class="fa-regular fa-calendar-xmark"></i> {{title}}</h1>
 {% elif title == 'Modificar Curso' %}
-<img src="{% static 'core/icons/class.png' %}" alt="Descripción de la imagen">
-<h1>{{title}}</h1>
+<h1><i class="fa-solid fa-graduation-cap"></i> {{title}}</h1>
 {% else %}
-<img src="{% static 'core/icons/setting.png' %}" alt="Descripción de la imagen">
-<h1>{{title}}</h1>
+<h1><i class="fa-solid fa-gear"></i> {{title}}</h1>
 {% endif %}
 {% endif %}{% endblock %}

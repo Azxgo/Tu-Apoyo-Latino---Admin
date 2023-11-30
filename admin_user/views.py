@@ -4,16 +4,21 @@ from django.template.loader import render_to_string
 from django.contrib import messages
 from django.conf import settings
 from .forms import Messages
-from .models import Mensaje, Calendario
+from .models import Mensaje, Calendario, UserProfile, Eventos
 from django.http import JsonResponse
+from django.contrib import admin
+from django.contrib.admin.sites import AdminSite
+from django.shortcuts import render
 
-# Create your views here.
+
+
 def inicio(request):
     return render(request, 'admin/inicio.html')
 
+
 # Vista que muestra los mensajes del inbox
 def inbox(request):
-    messages = Mensaje.objects.raw('select b.id , a.username,a.email,b.asunto,b.mensaje,b.creado from auth_user a,admin_user_mensaje b where a.id = remitente_id')
+    messages = Mensaje.objects.raw('select b.id , a.nombre,a.correo,b.asunto,b.mensaje,b.creado from admin_user_userprofile a,admin_user_mensaje b where a.nombre = remitente_id')
     print(messages)
     return render(request,'admin/inbox.html',{'messages': messages})
 
@@ -65,7 +70,7 @@ def responder_mensaje(request):
         return redirect('inbox')
 
 def activity(request):
-    return render(request, 'admin/activity.html')
+    pass
 
 def calendar(request):
     all_calendar = Calendario.objects.all()

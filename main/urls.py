@@ -21,6 +21,7 @@ from admin_user import views
 from django.conf.urls.static import static
 from django.conf import settings
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('inicio/', login_required(views.inicio), name='inicio'),

@@ -1185,4 +1185,12 @@ a.deletelink:focus, a.deletelink:hover {
   .botones{
     padding:10px;
   }
+
+  .stats-block{
+    padding-top:13px;
+}
   
+.card-body2{
+    padding: 30px;  
+}
+

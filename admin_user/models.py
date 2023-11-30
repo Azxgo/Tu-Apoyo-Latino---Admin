@@ -9,6 +9,13 @@ from django.dispatch import receiver
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
+class MyModel(models.Model):
+    pass
+    class Meta:
+        managed = False
+        verbose_name = 'My Model'
+        verbose_name = 'My Model'
+
 #UserManager
 class CustomAccountManager(BaseUserManager):
     def create_user(self, nombre, correo,  password, **other_fields):
@@ -101,12 +108,16 @@ def actualizar_eventos(sender, instance, created, **kwargs):
         eventos.save()
 
 class Asistente(models.Model):
+
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     evento = models.ForeignKey(Eventos, on_delete=models.CASCADE)
 
+    #def __str__(self):
+    #    return self.id
+
 
 class Actividad(models.Model):
-    sender = models.ForeignKey(settings.AUTH_USER_MODEL,related_name='Usuario',on_delete=models.CASCADE)
+    sender = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     verb = models.CharField(max_length=200)
     target_ct = models.ForeignKey(ContentType, blank=True, null=True,
     related_name='target_obj', on_delete=models.CASCADE)
@@ -118,7 +129,7 @@ class Actividad(models.Model):
         ordering = ('-created',)
 
     def __str__(self):
-        return self.pk 
+        return self.sender
   
 class Cursos(models.Model):
     id = models.AutoField(primary_key=True)
